@@ -7,8 +7,8 @@ Example project for a TO2 course.
 Project name: ${project.name}
 
 Authors:
-Jan Kowalski <jkowalski@student.agh.edu.pl>
-Maria Nowak <mnowak@student.agh.edu.pl> """
+Michał Szczerba <pan.szczerba@gmail.com>
+Anna Belowska <anna.belowska2@gmail.com> """
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
