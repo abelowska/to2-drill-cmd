@@ -1,4 +1,4 @@
-package java.pl.edu.agh.to2.Model.Settings;
+package pl.edu.agh.to2.settings;
 
 public enum QuestionSortingType
 {

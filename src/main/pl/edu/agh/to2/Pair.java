@@ -1,4 +1,4 @@
-package java.pl.edu.agh.to2.Model;
+package pl.edu.agh.to2;
 
 public class Pair<F,S>
 {

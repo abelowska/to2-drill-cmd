@@ -1,23 +1,26 @@
-package java.pl.edu.agh.to2.Model.Settings;
+package pl.edu.agh.to2.settings;
 
 public class Settings
 {
     private ParserType parserType;
     private QuestionSortingType questionSortingType;
+    private GraderType graderType;
     private String filename;
 
     Settings(SettingsBuilder builder)
     {
         parserType = builder.parserType;
         questionSortingType = builder.questionSortingType;
+        graderType = builder.graderType;
+        filename = builder.filename;
     }
 
-    public ParserType getType()
+    public ParserType getParserType()
     {
         return parserType;
     }
 
-    public QuestionSortingType getSorting()
+    public QuestionSortingType getQuestionSortingType()
     {
         return questionSortingType;
     }
@@ -27,21 +30,28 @@ public class Settings
         return filename;
     }
 
-    public SettingsBuilder createSettings()
+    public GraderType getGraderType()
+    {
+        return graderType;
+    }
+
+    public static SettingsBuilder createSettings()
     {
         return new SettingsBuilder();
     }
 
-    private static class SettingsBuilder
+    public static class SettingsBuilder
     {
         private ParserType parserType;
         private QuestionSortingType questionSortingType;
+        private GraderType graderType;
         private String filename;
 
         SettingsBuilder()
         {
             parserType = ParserType.TXT_PARSER;
             questionSortingType = QuestionSortingType.FILE_ORDER;
+            graderType = GraderType.STANDARD;
         }
 
         public SettingsBuilder parserType(ParserType parserType)
@@ -50,9 +60,15 @@ public class Settings
             return this;
         }
 
-        public SettingsBuilder questionSorting(QuestionSortingType questionSortingType)
+        public SettingsBuilder questionSortingType(QuestionSortingType questionSortingType)
         {
             this.questionSortingType = questionSortingType;
+            return this;
+        }
+
+        public SettingsBuilder graderType(GraderType graderType)
+        {
+            this.graderType = graderType;
             return this;
         }
 

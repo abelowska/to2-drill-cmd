@@ -1,6 +1,7 @@
-package java.pl.edu.agh.to2.Model.Grader;
+package pl.edu.agh.to2.grader;
 
-import java.pl.edu.agh.to2.Model.Question;
+import pl.edu.agh.to2.Question;
+
 import java.util.List;
 
 public interface Grader
