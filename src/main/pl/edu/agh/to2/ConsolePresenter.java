@@ -7,7 +7,6 @@ import pl.edu.agh.to2.settings.Settings;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class ConsolePresenter
 {
@@ -28,7 +27,7 @@ public class ConsolePresenter
     public Settings getSettings()
     {
         System.out.println("Using default setings");
-        return Settings.createSettings().build();
+        return Settings.SETTINGS;
     }
 
     public boolean isExit()
@@ -40,12 +39,12 @@ public class ConsolePresenter
     {
         Question question = questionBook.nextQuestion();
         Scanner scanner = new Scanner(System.in);
-        System.out.println(question.getText());
+        System.out.println(question.getTitle());
 
         int answerCounter = 1;
-        for(Pair<Boolean, String> answer: question.getAnswers())
+        for(Answer answer: question.getAnswers())
         {
-            System.out.println(answerCounter + ") " + answer.getSecond());
+            System.out.println(answerCounter + ") " + answer.getContent());
             answerCounter++;
         }
 

@@ -1,5 +1,6 @@
 package pl.edu.agh.to2.questionbook;
 
+import pl.edu.agh.to2.parser.ParseException;
 import pl.edu.agh.to2.parser.Parser;
 import pl.edu.agh.to2.Question;
 import java.util.ArrayList;
@@ -22,7 +23,12 @@ public class StandardOrderQuestionBook implements QuestionBook
     public void getQuestions()
     {
 
-        questions = parser.parseQuestions();
+        try {
+            questions = parser.parseQuestions();
+        } catch (ParseException e){
+            //TODO What to do with this exception
+            e.printStackTrace();
+    }
         it = questions.iterator();
     }
 

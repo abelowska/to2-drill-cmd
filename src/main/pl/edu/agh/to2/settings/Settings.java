@@ -1,18 +1,22 @@
 package pl.edu.agh.to2.settings;
 
-public class Settings
+public enum Settings
 {
+    SETTINGS;
+
     private ParserType parserType;
     private QuestionSortingType questionSortingType;
     private GraderType graderType;
+
     private String filename;
 
-    Settings(SettingsBuilder builder)
+    private Settings()
     {
-        parserType = builder.parserType;
-        questionSortingType = builder.questionSortingType;
-        graderType = builder.graderType;
-        filename = builder.filename;
+
+        parserType = ParserType.TXT_PARSER;
+        questionSortingType = QuestionSortingType.FILE_ORDER;
+        graderType = GraderType.STANDARD;
+        filename = "";
     }
 
     public ParserType getParserType()
@@ -20,14 +24,17 @@ public class Settings
         return parserType;
     }
 
+    public void setParserType(ParserType parserType) {
+        this.parserType = parserType;
+    }
+
     public QuestionSortingType getQuestionSortingType()
     {
         return questionSortingType;
     }
 
-    public String getFilename()
-    {
-        return filename;
+    public void setQuestionSortingType(QuestionSortingType questionSortingType) {
+        this.questionSortingType = questionSortingType;
     }
 
     public GraderType getGraderType()
@@ -35,52 +42,18 @@ public class Settings
         return graderType;
     }
 
-    public static SettingsBuilder createSettings()
-    {
-        return new SettingsBuilder();
+    public void setGraderType(GraderType graderType) {
+        this.graderType = graderType;
     }
 
-    public static class SettingsBuilder
+    public String getFilename()
     {
-        private ParserType parserType;
-        private QuestionSortingType questionSortingType;
-        private GraderType graderType;
-        private String filename;
-
-        SettingsBuilder()
-        {
-            parserType = ParserType.TXT_PARSER;
-            questionSortingType = QuestionSortingType.FILE_ORDER;
-            graderType = GraderType.STANDARD;
-        }
-
-        public SettingsBuilder parserType(ParserType parserType)
-        {
-            this.parserType = parserType;
-            return this;
-        }
-
-        public SettingsBuilder questionSortingType(QuestionSortingType questionSortingType)
-        {
-            this.questionSortingType = questionSortingType;
-            return this;
-        }
-
-        public SettingsBuilder graderType(GraderType graderType)
-        {
-            this.graderType = graderType;
-            return this;
-        }
-
-        private SettingsBuilder filename(String filename)
-        {
-            this.filename = filename;
-            return this;
-        }
-
-        public Settings build()
-        {
-            return new Settings(this);
-        }
+        return filename;
     }
+
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
 }

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface Parser
 {
-    public List<Question> parseQuestions();
+    public List<Question> parseQuestions() throws ParseException;
+
 }

@@ -3,3 +3,7 @@
 *.idea/*
 build/*
 .gradle/*
+*.DS_Store
+gradle/*
+gradlew
+gradlew.bat
