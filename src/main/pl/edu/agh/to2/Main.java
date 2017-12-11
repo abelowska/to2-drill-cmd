@@ -1,36 +1,18 @@
 package pl.edu.agh.to2;
 
-import pl.edu.agh.to2.parser.ParseException;
-import pl.edu.agh.to2.parser.TxtParser;
 import pl.edu.agh.to2.settings.Settings;
-
-import java.util.List;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        if(args.length < 1) {
-            System.out.println("You need to provide path to file with questions");
-        }
+        Settings.SETTINGS.setFilename(args.length > 0
+                ? args[0] : "");
 
-        Settings.SETTINGS.setFilename(args[0]);
-
-        ConsolePresenter presenter = new ConsolePresenter();
-
-        Builder builder = new Builder(presenter.getSettings());
-        builder.buildComponents();
-
-        presenter.setQuestionBook(builder.getQuestionBook());
-        presenter.setStatistics(builder.getStatistics());
+        Presenter presenter = new Presenter();
+        presenter.startTest();
 
 
-        while(!presenter.isExit())
-        {
-            presenter.askNextQuestion();
-        }
-
-        presenter.showStatistics();
 
 //        TxtParser parser = new TxtParser("/Users/Anna/Desktop/filename.txt");
 //
