@@ -33,6 +33,7 @@ public class Presenter
         builder.buildComponents();
         this.provider = builder.getProvider();
 
+
         boolean isExit = false;
 
         while(!isExit)

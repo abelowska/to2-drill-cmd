@@ -71,6 +71,8 @@ public class ConsoleView implements View {
                 e.printStackTrace();
             }
         }
+        else
+            settings.graderClass(Settings.validGraders.get(0));
 
         String parserTypes = "";
         for(Class<?> c : Settings.validParsers)
@@ -85,6 +87,8 @@ public class ConsoleView implements View {
                 e.printStackTrace();
             }
         }
+        else
+            settings.parserClass(Settings.validParsers.get(0));
 
         String questionBookTypes= "";
         for(Class<?> c : Settings.validQuestionBooks)
@@ -99,6 +103,8 @@ public class ConsoleView implements View {
                 e.printStackTrace();
             }
         }
+        else
+            settings.questionBookClass(Settings.validQuestionBooks.get(0));
 
         System.out.println("You need to provide path to file with questions");
 

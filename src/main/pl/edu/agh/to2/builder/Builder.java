@@ -42,6 +42,7 @@ public class Builder
         }
 
         provider.setStatistics(new Statistics(provider.getGrader()));
+        provider.getQuestionBook().getQuestions();
 
     }
 
