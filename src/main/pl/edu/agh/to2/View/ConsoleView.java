@@ -3,19 +3,15 @@ package pl.edu.agh.to2.View;
 import pl.edu.agh.to2.Answer;
 import pl.edu.agh.to2.Presenter;
 import pl.edu.agh.to2.Question;
+import pl.edu.agh.to2.builder.Settings;
 import pl.edu.agh.to2.grader.Grader;
-import pl.edu.agh.to2.grader.Statistics;
 import pl.edu.agh.to2.parser.Parser;
 import pl.edu.agh.to2.questionbook.QuestionBook;
-import pl.edu.agh.to2.settings.Settings;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.Class.forName;
 
 public class ConsoleView implements View {
 
@@ -57,48 +53,60 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void askForSettings(Settings settings) {
+    public Settings askForSettings() {
+        Settings settings = new Settings();
         Scanner scanner = new Scanner(System.in);
         String className;
 
-        System.out.println(String.format ("Please provide grader class: [%s]", settings.getGraderType()));
+        String graderTypes= "";
+        for(Class<?> c : Settings.validGraders)
+            graderTypes += c.getSimpleName() + " | ";
+        graderTypes = graderTypes.substring(0,graderTypes.length() - 3);
+        System.out.println(String.format ("Please provide grader class: [%s]", graderTypes));
         className = scanner.nextLine();
         if(!className.isEmpty()) {
             try {
-                this.presenter.selectGrader((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.grader." + className));
+                settings.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.grader." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
 
-        System.out.println(String.format ("Please provide parser class: [%s]", settings.getParserType()));
+        String parserTypes = "";
+        for(Class<?> c : Settings.validParsers)
+            parserTypes += c.getSimpleName() + " | ";
+        parserTypes = parserTypes.substring(0,parserTypes.length() - 3);
+        System.out.println(String.format ("Please provide parser class: [%s]", parserTypes));
         className = scanner.nextLine();
         if(!className.isEmpty()) {
             try {
-                this.presenter.selectParser((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.parser." + className));
+                settings.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.parser." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-            }        }
+            }
+        }
 
-        System.out.println(String.format ("Please provide question book class: [%s]", settings.getQuestionSortingType()));
+        String questionBookTypes= "";
+        for(Class<?> c : Settings.validQuestionBooks)
+            questionBookTypes += c.getSimpleName() + " | ";
+        questionBookTypes = questionBookTypes.substring(0,questionBookTypes.length() - 3);
+        System.out.println(String.format ("Please provide question book class: [%s]", questionBookTypes));
         className = scanner.nextLine();
         if(!className.isEmpty()) {
             try{
-                this.presenter.selectQuestionBookType((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.questionbook." + className));
+                settings.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.questionbook." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-    }
 
-    @Override
-    public void askForFile() {
         System.out.println("You need to provide path to file with questions");
-        Scanner scanner = new Scanner(System.in);
 
         String path = scanner.next();
 
-        this.presenter.selectQuestionFile(Paths.get(path));
+        settings.filename(Paths.get(path).toAbsolutePath().toString());
+
+        return settings;
     }
 
     @Override

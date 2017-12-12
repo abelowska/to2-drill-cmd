@@ -1,13 +1,11 @@
 package pl.edu.agh.to2;
 
-import pl.edu.agh.to2.settings.Settings;
-
 public class Main
 {
     public static void main(String[] args)
     {
-        Settings.SETTINGS.setFilename(args.length > 0
-                ? args[0] : "");
+//        Settings.SETTINGS.setFilename(args.length > 0
+//                ? args[0] : "");
 
         Presenter presenter = new Presenter();
         presenter.startTest();
