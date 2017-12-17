@@ -3,47 +3,43 @@ package pl.edu.agh.to2.questionbook;
 import pl.edu.agh.to2.parser.ParseException;
 import pl.edu.agh.to2.parser.Parser;
 import pl.edu.agh.to2.Question;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class StandardOrderQuestionBook implements QuestionBook
-{
+public class StandardOrderQuestionBook implements QuestionBook {
     private Parser parser;
     private List<Question> questions;
     private Iterator<Question> it;
 
-    public StandardOrderQuestionBook(Parser parser)
-    {
+    public StandardOrderQuestionBook(Parser parser) {
         this.parser = parser;
         questions = new ArrayList<>();
     }
 
     @Override
-    public void getQuestions()
-    {
+    public void getQuestions() {
 
         try {
             questions = parser.parseQuestions();
-        } catch (ParseException e){
+        } catch (ParseException e) {
             //TODO What to do with this exception
             e.printStackTrace();
-    }
+        }
         it = questions.iterator();
     }
 
     @Override
-    public Question nextQuestion()
-    {
-        if(it.hasNext())
+    public Question nextQuestion() {
+        if (it.hasNext())
             return it.next();
         else
             return null;
     }
 
     @Override
-    public boolean hasNextQuestion()
-    {
+    public boolean hasNextQuestion() {
         return it.hasNext();
     }
 

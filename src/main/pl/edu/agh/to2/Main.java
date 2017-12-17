@@ -1,15 +1,12 @@
 package pl.edu.agh.to2;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
 //        Settings.SETTINGS.setFilename(args.length > 0
 //                ? args[0] : "");
 
         Presenter presenter = new Presenter();
         presenter.startTest();
-
 
 
 //        TxtParser parser = new TxtParser("/Users/Anna/Desktop/filename.txt");

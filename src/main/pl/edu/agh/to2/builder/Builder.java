@@ -7,37 +7,29 @@ import pl.edu.agh.to2.parser.Parser;
 import java.io.InvalidClassException;
 import java.lang.reflect.InvocationTargetException;
 
-public class Builder
-{
+public class Builder {
     private Provider provider;
     private Settings settings;
 
-    public Builder(Settings settings)
-    {
+    public Builder(Settings settings) {
         this.settings = settings;
     }
 
-    public void buildComponents()
-    {
+    public void buildComponents() {
         provider = new Provider();
 
-        try
-        {
+        try {
             provider.setGrader(settings.getGraderClass().newInstance());
             provider.setParser(settings.getParserClass().getDeclaredConstructor(String.class).newInstance(settings.getFilename()));
             provider.setQuestionBook(settings.getQuestionBookClass().getDeclaredConstructor(Parser.class).newInstance(provider.getParser()));
 
-        } catch (InstantiationException e)
-        {
+        } catch (InstantiationException e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e)
-        {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } catch (InvocationTargetException e)
-        {
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
-        } catch (NoSuchMethodException e)
-        {
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
 
@@ -46,8 +38,7 @@ public class Builder
 
     }
 
-    public Provider getProvider()
-    {
+    public Provider getProvider() {
         return provider;
     }
 }

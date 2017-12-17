@@ -4,31 +4,26 @@ import pl.edu.agh.to2.Question;
 
 import java.util.List;
 
-public class Score
-{
+public class Score {
     private Question question;
     private List<Integer> answerIndexes;
     private float percentage;
 
-    public Score(Question question, List<Integer> answerIndexes, float percentage)
-    {
+    public Score(Question question, List<Integer> answerIndexes, float percentage) {
         this.question = question;
         this.answerIndexes = answerIndexes;
         this.percentage = percentage;
     }
 
-    public Question getQuestion()
-    {
+    public Question getQuestion() {
         return question;
     }
 
-    public List<Integer> getAnswearIndexes()
-    {
+    public List<Integer> getAnswearIndexes() {
         return answerIndexes;
     }
 
-    public float getPercentage()
-    {
+    public float getPercentage() {
         return percentage;
     }
 }

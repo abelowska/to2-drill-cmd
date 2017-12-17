@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Settings
-{
+public class Settings {
     public static final List<Class<? extends Grader>> validGraders = Stream.of(StandardGrader.class).collect(Collectors.toList());
     public static final List<Class<? extends Parser>> validParsers = Stream.of(TxtParser.class).collect(Collectors.toList());
     public static final List<Class<? extends QuestionBook>> validQuestionBooks = Stream.of(StandardOrderQuestionBook.class).collect(Collectors.toList());
@@ -22,47 +21,39 @@ public class Settings
     private Class<? extends QuestionBook> questionBookClass;
     private String filename;
 
-    public Settings parserClass(Class<? extends Parser> parserClass)
-    {
+    public Settings parserClass(Class<? extends Parser> parserClass) {
         this.parserClass = parserClass;
         return this;
     }
 
-    public Settings graderClass(Class<? extends Grader> graderClass)
-    {
+    public Settings graderClass(Class<? extends Grader> graderClass) {
         this.graderClass = graderClass;
         return this;
     }
 
-    public Settings questionBookClass(Class<? extends QuestionBook> questionBookClass)
-    {
+    public Settings questionBookClass(Class<? extends QuestionBook> questionBookClass) {
         this.questionBookClass = questionBookClass;
         return this;
     }
 
-    public Settings filename(String filename)
-    {
+    public Settings filename(String filename) {
         this.filename = filename;
         return this;
     }
 
-    public Class<? extends Parser> getParserClass()
-    {
+    public Class<? extends Parser> getParserClass() {
         return parserClass;
     }
 
-    public Class<? extends Grader> getGraderClass()
-    {
+    public Class<? extends Grader> getGraderClass() {
         return graderClass;
     }
 
-    public Class<? extends QuestionBook> getQuestionBookClass()
-    {
+    public Class<? extends QuestionBook> getQuestionBookClass() {
         return questionBookClass;
     }
 
-    public String getFilename()
-    {
+    public String getFilename() {
         return filename;
     }
 }

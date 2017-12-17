@@ -27,8 +27,7 @@ public class ConsoleView implements View {
         System.out.println(question.getTitle());
 
         int answerCounter = 1;
-        for(Answer answer: question.getAnswers())
-        {
+        for (Answer answer : question.getAnswers()) {
             System.out.println(answerCounter + ") " + answer.getContent());
             answerCounter++;
         }
@@ -37,14 +36,12 @@ public class ConsoleView implements View {
         System.out.print("\n" + "Pick answers numbers(end with q): ");
 
         boolean parse = true;
-        while(parse)
-        {
+        while (parse) {
             String str = scanner.next();
 
-            if(str.contains("q"))
+            if (str.contains("q"))
                 parse = false;
-            else
-            {
+            else {
                 userAnswers.add(Integer.valueOf(str) - 1);
             }
         }
@@ -58,52 +55,49 @@ public class ConsoleView implements View {
         Scanner scanner = new Scanner(System.in);
         String className;
 
-        String graderTypes= "";
-        for(Class<?> c : Settings.validGraders)
+        String graderTypes = "";
+        for (Class<?> c : Settings.validGraders)
             graderTypes += c.getSimpleName() + " | ";
-        graderTypes = graderTypes.substring(0,graderTypes.length() - 3);
-        System.out.println(String.format ("Please provide grader class: [%s]", graderTypes));
+        graderTypes = graderTypes.substring(0, graderTypes.length() - 3);
+        System.out.println(String.format("Please provide grader class: [%s]", graderTypes));
         className = scanner.nextLine();
-        if(!className.isEmpty()) {
+        if (!className.isEmpty()) {
             try {
                 settings.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.grader." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
-        else
+        } else
             settings.graderClass(Settings.validGraders.get(0));
 
         String parserTypes = "";
-        for(Class<?> c : Settings.validParsers)
+        for (Class<?> c : Settings.validParsers)
             parserTypes += c.getSimpleName() + " | ";
-        parserTypes = parserTypes.substring(0,parserTypes.length() - 3);
-        System.out.println(String.format ("Please provide parser class: [%s]", parserTypes));
+        parserTypes = parserTypes.substring(0, parserTypes.length() - 3);
+        System.out.println(String.format("Please provide parser class: [%s]", parserTypes));
         className = scanner.nextLine();
-        if(!className.isEmpty()) {
+        if (!className.isEmpty()) {
             try {
                 settings.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.parser." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
-        else
+        } else
             settings.parserClass(Settings.validParsers.get(0));
 
-        String questionBookTypes= "";
-        for(Class<?> c : Settings.validQuestionBooks)
+        String questionBookTypes = "";
+        for (Class<?> c : Settings.validQuestionBooks)
             questionBookTypes += c.getSimpleName() + " | ";
-        questionBookTypes = questionBookTypes.substring(0,questionBookTypes.length() - 3);
-        System.out.println(String.format ("Please provide question book class: [%s]", questionBookTypes));
+        questionBookTypes = questionBookTypes.substring(0, questionBookTypes.length() - 3);
+        System.out.println(String.format("Please provide question book class: [%s]", questionBookTypes));
         className = scanner.nextLine();
-        if(!className.isEmpty()) {
-            try{
+        if (!className.isEmpty()) {
+            try {
                 settings.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.questionbook." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
-        else
+        } else
             settings.questionBookClass(Settings.validQuestionBooks.get(0));
 
         System.out.println("You need to provide path to file with questions");

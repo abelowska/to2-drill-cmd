@@ -10,30 +10,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //TODO handling wrong input file format
-public class TxtParser implements Parser
-{
+public class TxtParser implements Parser {
     String filename;
-    private static final Pattern ANSWER_PATTERN = Pattern.compile( "(>>>)?(.+)");
-    private static final Pattern HEADER_PATTERN = Pattern.compile( "(\\*)?(.+)");
+    private static final Pattern ANSWER_PATTERN = Pattern.compile("(>>>)?(.+)");
+    private static final Pattern HEADER_PATTERN = Pattern.compile("(\\*)?(.+)");
 
-    public TxtParser(String filename)
-    {
+    public TxtParser(String filename) {
         this.filename = filename;
     }
 
-    private Question parseQuestion(BufferedReader br, String header) throws IOException, ParseException{
+    private Question parseQuestion(BufferedReader br, String header) throws IOException, ParseException {
         Question q = new Question();
 
         Matcher m = HEADER_PATTERN.matcher(header);
 
-        if(m.matches()) {
+        if (m.matches()) {
             String g1 = m.group(1);
             q.setHeader(m.group(2));
             q.setMultipleChoice(g1 == null);
         }
 
         String line = br.readLine();
-        if(line == null) {throw new ParseException("Question without content");}
+        if (line == null) {
+            throw new ParseException("Question without content");
+        }
         q.setTitle(line);
 
         while ((line = br.readLine()) != null) {
@@ -51,7 +51,7 @@ public class TxtParser implements Parser
         Matcher m = ANSWER_PATTERN.matcher(line);
 
 
-        if(m.matches()) {
+        if (m.matches()) {
             String g1 = m.group(1);
             return new Answer(m.group(2), g1 != null);
         }
@@ -59,8 +59,7 @@ public class TxtParser implements Parser
     }
 
     @Override
-    public List<Question> parseQuestions() throws ParseException
-    {
+    public List<Question> parseQuestions() throws ParseException {
         List<Question> questions = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -71,7 +70,7 @@ public class TxtParser implements Parser
                     questions.add(question);
                 }
             }
-        } catch (IOException  e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

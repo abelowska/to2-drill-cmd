@@ -5,50 +5,41 @@ import pl.edu.agh.to2.grader.Statistics;
 import pl.edu.agh.to2.parser.Parser;
 import pl.edu.agh.to2.questionbook.QuestionBook;
 
-public class Provider
-{
+public class Provider {
     private Parser parser;
     private Grader grader;
     private QuestionBook questionBook;
     private Statistics statistics;
 
-    public Parser getParser()
-    {
+    public Parser getParser() {
         return parser;
     }
 
-    public Grader getGrader()
-    {
+    public Grader getGrader() {
         return grader;
     }
 
-    public QuestionBook getQuestionBook()
-    {
+    public QuestionBook getQuestionBook() {
         return questionBook;
     }
 
-    public Statistics getStatistics()
-    {
+    public Statistics getStatistics() {
         return statistics;
     }
 
-    public void setParser(Parser parser)
-    {
+    public void setParser(Parser parser) {
         this.parser = parser;
     }
 
-    public void setGrader(Grader grader)
-    {
+    public void setGrader(Grader grader) {
         this.grader = grader;
     }
 
-    public void setQuestionBook(QuestionBook questionBook)
-    {
+    public void setQuestionBook(QuestionBook questionBook) {
         this.questionBook = questionBook;
     }
 
-    public void setStatistics(Statistics statistics)
-    {
+    public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
 }

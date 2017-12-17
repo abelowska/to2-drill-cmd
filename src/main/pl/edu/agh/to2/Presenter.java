@@ -8,8 +8,7 @@ import pl.edu.agh.to2.grader.StandardGrader;
 import pl.edu.agh.to2.parser.TxtParser;
 import pl.edu.agh.to2.questionbook.StandardOrderQuestionBook;
 
-public class Presenter
-{
+public class Presenter {
     private Provider provider;
     View view = new ConsoleView(this);
 
@@ -18,10 +17,7 @@ public class Presenter
 
         if (areSettingsNeeded()) {
             settings = view.askForSettings();
-        }
-
-        else
-        {
+        } else {
             settings = new Settings();
             settings.graderClass(StandardGrader.class)
                     .parserClass(TxtParser.class)
@@ -33,15 +29,17 @@ public class Presenter
         builder.buildComponents();
         this.provider = builder.getProvider();
 
+        runTest();
+    }
 
+    private void runTest() {
         boolean isExit = false;
 
-        while(!isExit)
-        {
+        while (!isExit) {
             Question question = provider.getQuestionBook().nextQuestion();
             provider.getStatistics().gradeQuestion(question, view.askQuestion(question));
 
-            if(!provider.getQuestionBook().hasNextQuestion())
+            if (!provider.getQuestionBook().hasNextQuestion())
                 isExit = true;
         }
 
@@ -53,7 +51,7 @@ public class Presenter
     }
 
     private void showStatistics() {
-        view.showStatistics((int)(provider.getStatistics().getOverallScore()*100));
+        view.showStatistics((int) (provider.getStatistics().getOverallScore() * 100));
     }
 
 }

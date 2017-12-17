@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Question
-{
+public class Question {
     private String title;
     private String header;
     private boolean isMultipleChoice;
