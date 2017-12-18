@@ -1,7 +1,7 @@
 package pl.edu.agh.to2.presenter;
 
 import pl.edu.agh.to2.model.Provider;
-import pl.edu.agh.to2.model.Question;
+import pl.edu.agh.to2.model.question.Question;
 import pl.edu.agh.to2.view.ConsoleView;
 import pl.edu.agh.to2.view.View;
 import pl.edu.agh.to2.model.builder.Builder;

@@ -1,7 +1,7 @@
 package pl.edu.agh.to2.view;
 
-import pl.edu.agh.to2.model.Answer;
-import pl.edu.agh.to2.model.Question;
+import pl.edu.agh.to2.model.question.Answer;
+import pl.edu.agh.to2.model.question.Question;
 import pl.edu.agh.to2.model.builder.Settings;
 import pl.edu.agh.to2.model.grader.Statistics;
 
