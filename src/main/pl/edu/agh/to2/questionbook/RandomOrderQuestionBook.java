@@ -1,30 +1,30 @@
 package pl.edu.agh.to2.questionbook;
 
+import pl.edu.agh.to2.Question;
 import pl.edu.agh.to2.parser.ParseException;
 import pl.edu.agh.to2.parser.Parser;
-import pl.edu.agh.to2.Question;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class StandardOrderQuestionBook implements QuestionBook {
-    private Parser parser;
-    private List<Question> questions;
-    private Iterator<Question> it;
+public class RandomOrderQuestionBook implements QuestionBook {
+    List<Question> questions;
+    Iterator<Question> it;
+    Parser parser;
 
-    public StandardOrderQuestionBook(Parser parser) {
+    public RandomOrderQuestionBook(Parser parser) {
         this.parser = parser;
         questions = new ArrayList<>();
     }
 
     @Override
     public void initQuestions() {
-
         try {
             questions = parser.parseQuestions();
+            Collections.shuffle(questions);
         } catch (ParseException e) {
-            //TODO What to do with this exception
             e.printStackTrace();
         }
         it = questions.iterator();
@@ -32,16 +32,15 @@ public class StandardOrderQuestionBook implements QuestionBook {
 
     @Override
     public Question nextQuestion() {
-        if (it.hasNext())
-            return it.next();
+        if (it.hasNext()) {
+            Question q = it.next();
+            q.shuffleAnswers();
+            return q;
+        }
         else
             return null;
     }
 
     @Override
-    public boolean hasNextQuestion() {
-        return it.hasNext();
-    }
-
-
+    public boolean hasNextQuestion() { return it.hasNext(); }
 }

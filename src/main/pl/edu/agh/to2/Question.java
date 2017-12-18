@@ -53,6 +53,8 @@ public class Question {
         answers.add(answer);
     }
 
+    public void shuffleAnswers(){ Collections.shuffle(answers); }
+
     @Override
     public boolean equals(Object o) {
         if (o.getClass() == getClass()) {

@@ -4,7 +4,6 @@ import pl.edu.agh.to2.Provider;
 import pl.edu.agh.to2.grader.Statistics;
 import pl.edu.agh.to2.parser.Parser;
 
-import java.io.InvalidClassException;
 import java.lang.reflect.InvocationTargetException;
 
 public class Builder {
@@ -34,7 +33,7 @@ public class Builder {
         }
 
         provider.setStatistics(new Statistics(provider.getGrader()));
-        provider.getQuestionBook().getQuestions();
+        provider.getQuestionBook().initQuestions();
 
     }
 
