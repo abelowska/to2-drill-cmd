@@ -1,7 +1,7 @@
-package pl.edu.agh.to2.grader;
+package pl.edu.agh.to2.model.grader;
 
-import pl.edu.agh.to2.Answer;
-import pl.edu.agh.to2.Question;
+import pl.edu.agh.to2.model.question.Answer;
+import pl.edu.agh.to2.model.question.Question;
 
 import java.util.ArrayList;
 import java.util.List;

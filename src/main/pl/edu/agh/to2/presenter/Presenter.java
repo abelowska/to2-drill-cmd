@@ -1,12 +1,14 @@
-package pl.edu.agh.to2;
+package pl.edu.agh.to2.presenter;
 
+import pl.edu.agh.to2.model.Provider;
+import pl.edu.agh.to2.model.question.Question;
 import pl.edu.agh.to2.view.ConsoleView;
 import pl.edu.agh.to2.view.View;
-import pl.edu.agh.to2.builder.Builder;
-import pl.edu.agh.to2.builder.Settings;
-import pl.edu.agh.to2.grader.StandardGrader;
-import pl.edu.agh.to2.parser.TxtParser;
-import pl.edu.agh.to2.questionbook.StandardOrderQuestionBook;
+import pl.edu.agh.to2.model.builder.Builder;
+import pl.edu.agh.to2.model.builder.Settings;
+import pl.edu.agh.to2.model.grader.StandardGrader;
+import pl.edu.agh.to2.model.parser.TxtParser;
+import pl.edu.agh.to2.model.questionbook.StandardOrderQuestionBook;
 
 public class Presenter {
     private Provider provider;
@@ -51,7 +53,7 @@ public class Presenter {
     }
 
     private void showStatistics() {
-        view.showStatistics((int) (provider.getStatistics().getOverallScore() * 100));
+        view.showStatistics(provider.getStatistics());
     }
 
 }

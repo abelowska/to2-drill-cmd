@@ -1,7 +1,7 @@
-package pl.edu.agh.to2.parser;
+package pl.edu.agh.to2.model.parser;
 
 
-import pl.edu.agh.to2.Question;
+import pl.edu.agh.to2.model.question.Question;
 
 import java.util.List;
 

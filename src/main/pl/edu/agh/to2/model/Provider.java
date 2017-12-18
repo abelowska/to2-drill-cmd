@@ -1,9 +1,9 @@
-package pl.edu.agh.to2;
+package pl.edu.agh.to2.model;
 
-import pl.edu.agh.to2.grader.Grader;
-import pl.edu.agh.to2.grader.Statistics;
-import pl.edu.agh.to2.parser.Parser;
-import pl.edu.agh.to2.questionbook.QuestionBook;
+import pl.edu.agh.to2.model.grader.Grader;
+import pl.edu.agh.to2.model.grader.Statistics;
+import pl.edu.agh.to2.model.parser.Parser;
+import pl.edu.agh.to2.model.questionbook.QuestionBook;
 
 public class Provider {
     private Parser parser;

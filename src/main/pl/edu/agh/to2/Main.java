@@ -1,5 +1,7 @@
 package pl.edu.agh.to2;
 
+import pl.edu.agh.to2.presenter.Presenter;
+
 public class Main {
     public static void main(String[] args) {
 //        Settings.SETTINGS.setFilename(args.length > 0

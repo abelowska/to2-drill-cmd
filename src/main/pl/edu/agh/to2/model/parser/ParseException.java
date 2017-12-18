@@ -1,4 +1,4 @@
-package pl.edu.agh.to2.parser;
+package pl.edu.agh.to2.model.parser;
 
 public class ParseException extends Exception {
 

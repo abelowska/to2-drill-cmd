@@ -1,6 +1,6 @@
-package pl.edu.agh.to2.questionbook;
+package pl.edu.agh.to2.model.questionbook;
 
-import pl.edu.agh.to2.Question;
+import pl.edu.agh.to2.model.question.Question;
 
 public interface QuestionBook {
     void initQuestions();
