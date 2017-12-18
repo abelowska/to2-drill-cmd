@@ -1,0 +1,15 @@
+Rozważając pamięć WIRTUALNĄ, następujące stwierdzenia są prawdziwe:
+A) Na danej stronie może być kilka ramek.
+B) Ilość stron w systemie nie może być większa od ilości ramek.
+C) Strona może zawierać ramkę lub może być pusta.
+D) Ta sama ramka może być załadowana do dwóch różnych stron.
+>>>E) Może zdarzyć się, że w pamięci operacyjnej (RAM) są załadowane (zajęte) wszystkie ramki.
+>>>F) Przechowywana na dysku strona nie musi być wersją aktualną tej strony.
+
+*Jeśli pamięć WIRTUALNA i pamięć SEGMENTOWANA występują razem i współpracują, to można stwierdzić, że (wybrać poprawne):
+>>>A) Każdy segment ma swoją tablicę stron.
+B) Wskazane jest, żeby pamięć segmentowana była podzielona na dużą liczbę ''małych'' segmentów.
+C) Dana strona może należeć do kilku segmentów.
+D) Adres wirtualny jest przekształcany na adres segmentowany.
+E) Tablica segmentów nie jest potrzebna — zastępuje ją tablica stron.
+F) Tzw. ''zjawisko FRAGMENTACJI pamięci'' nie występuje.

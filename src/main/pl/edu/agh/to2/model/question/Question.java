@@ -14,7 +14,7 @@ public class Question {
         this.id = id;
         this.title = title;
         this.isMultipleChoice = isMultipleChoice;
-        this.answers = answers;
+        this.answers = new ArrayList<>(answers);
     }
 
     public int getId() {

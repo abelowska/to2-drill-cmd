@@ -1,8 +1,8 @@
-package pl.edu.agh.to2.questionbook;
+package pl.edu.agh.to2.model.questionbook;
 
-import pl.edu.agh.to2.Question;
-import pl.edu.agh.to2.parser.ParseException;
-import pl.edu.agh.to2.parser.Parser;
+import pl.edu.agh.to2.model.parser.ParseException;
+import pl.edu.agh.to2.model.parser.Parser;
+import pl.edu.agh.to2.model.question.Question;
 
 import java.util.ArrayList;
 import java.util.Collections;

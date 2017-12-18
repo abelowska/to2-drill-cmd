@@ -24,7 +24,7 @@ public class Presenter {
             settings.graderClass(StandardGrader.class)
                     .parserClass(TxtParser.class)
                     .questionBookClass(StandardOrderQuestionBook.class)
-                    .filename("SampleTest.txt");
+                    .filename("filename.txt");
         }
 
         Builder builder = new Builder(settings);
