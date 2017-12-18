@@ -1,11 +1,11 @@
-package pl.edu.agh.to2.builder;
+package pl.edu.agh.to2.model.builder;
 
-import pl.edu.agh.to2.grader.Grader;
-import pl.edu.agh.to2.grader.StandardGrader;
-import pl.edu.agh.to2.parser.Parser;
-import pl.edu.agh.to2.parser.TxtParser;
-import pl.edu.agh.to2.questionbook.QuestionBook;
-import pl.edu.agh.to2.questionbook.StandardOrderQuestionBook;
+import pl.edu.agh.to2.model.grader.Grader;
+import pl.edu.agh.to2.model.grader.StandardGrader;
+import pl.edu.agh.to2.model.parser.Parser;
+import pl.edu.agh.to2.model.parser.TxtParser;
+import pl.edu.agh.to2.model.questionbook.QuestionBook;
+import pl.edu.agh.to2.model.questionbook.StandardOrderQuestionBook;
 
 import java.util.List;
 import java.util.stream.Collectors;

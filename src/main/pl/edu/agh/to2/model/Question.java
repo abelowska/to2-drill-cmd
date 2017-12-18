@@ -1,4 +1,4 @@
-package pl.edu.agh.to2;
+package pl.edu.agh.to2.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

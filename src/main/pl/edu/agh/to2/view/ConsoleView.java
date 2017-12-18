@@ -1,12 +1,13 @@
 package pl.edu.agh.to2.view;
 
-import pl.edu.agh.to2.Answer;
-import pl.edu.agh.to2.Presenter;
-import pl.edu.agh.to2.Question;
-import pl.edu.agh.to2.builder.Settings;
-import pl.edu.agh.to2.grader.Grader;
-import pl.edu.agh.to2.parser.Parser;
-import pl.edu.agh.to2.questionbook.QuestionBook;
+import pl.edu.agh.to2.model.Answer;
+import pl.edu.agh.to2.presenter.Presenter;
+import pl.edu.agh.to2.model.Question;
+import pl.edu.agh.to2.model.builder.Settings;
+import pl.edu.agh.to2.model.grader.Grader;
+import pl.edu.agh.to2.model.grader.Statistics;
+import pl.edu.agh.to2.model.parser.Parser;
+import pl.edu.agh.to2.model.questionbook.QuestionBook;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class ConsoleView implements View {
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                settings.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.grader." + className));
+                settings.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.model.grader." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -81,7 +82,7 @@ public class ConsoleView implements View {
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                settings.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.parser." + className));
+                settings.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.model.parser." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -96,7 +97,7 @@ public class ConsoleView implements View {
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                settings.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.questionbook." + className));
+                settings.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.model.questionbook." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -113,8 +114,8 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public void showStatistics(int stats) {
-        System.out.println("Score: " + stats + "%");
+    public void showStatistics(Statistics statistics) {
+        System.out.println("Score: " + statistics.getOverallScore() * 100 + "%");
     }
 
 

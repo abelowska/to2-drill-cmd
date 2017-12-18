@@ -1,10 +1,9 @@
-package pl.edu.agh.to2.builder;
+package pl.edu.agh.to2.model.builder;
 
-import pl.edu.agh.to2.Provider;
-import pl.edu.agh.to2.grader.Statistics;
-import pl.edu.agh.to2.parser.Parser;
+import pl.edu.agh.to2.model.Provider;
+import pl.edu.agh.to2.model.grader.Statistics;
+import pl.edu.agh.to2.model.parser.Parser;
 
-import java.io.InvalidClassException;
 import java.lang.reflect.InvocationTargetException;
 
 public class Builder {
