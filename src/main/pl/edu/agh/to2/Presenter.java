@@ -1,7 +1,7 @@
 package pl.edu.agh.to2;
 
-import pl.edu.agh.to2.View.ConsoleView;
-import pl.edu.agh.to2.View.View;
+import pl.edu.agh.to2.view.ConsoleView;
+import pl.edu.agh.to2.view.View;
 import pl.edu.agh.to2.builder.Builder;
 import pl.edu.agh.to2.builder.Settings;
 import pl.edu.agh.to2.grader.StandardGrader;

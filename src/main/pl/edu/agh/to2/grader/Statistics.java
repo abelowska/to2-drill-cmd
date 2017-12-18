@@ -1,5 +1,6 @@
 package pl.edu.agh.to2.grader;
 
+import pl.edu.agh.to2.Answer;
 import pl.edu.agh.to2.Question;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Statistics {
         this.grader = grader;
     }
 
-    public void gradeQuestion(Question question, List<Integer> userAnswers) {
+    public void gradeQuestion(Question question, List<Answer> userAnswers) {
         Score score = grader.getScore(question, userAnswers);
 
         overallScore += (score.getPercentage() - overallScore) / (scoreList.size() + 1);

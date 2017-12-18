@@ -1,4 +1,4 @@
-package pl.edu.agh.to2.View;
+package pl.edu.agh.to2.view;
 
 import pl.edu.agh.to2.Answer;
 import pl.edu.agh.to2.Presenter;
@@ -22,7 +22,7 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public List<Integer> askQuestion(Question question) {
+    public List<Answer> askQuestion(Question question) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(question.getTitle());
 
@@ -32,7 +32,7 @@ public class ConsoleView implements View {
             answerCounter++;
         }
 
-        List<Integer> userAnswers = new ArrayList<>();
+        List<Integer> userAnswerIndexes = new ArrayList<>();
         System.out.print("\n" + "Pick answers numbers(end with q): ");
 
         boolean parse = true;
@@ -42,10 +42,13 @@ public class ConsoleView implements View {
             if (str.contains("q"))
                 parse = false;
             else {
-                userAnswers.add(Integer.valueOf(str) - 1);
+                userAnswerIndexes.add(Integer.valueOf(str) - 1);
             }
         }
 
+        List<Answer> userAnswers = new ArrayList<>();
+        for(Integer index: userAnswerIndexes)
+            userAnswers.add(question.getAnswers().get(index));
         return userAnswers;
     }
 
