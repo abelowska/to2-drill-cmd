@@ -5,6 +5,7 @@ import pl.edu.agh.to2.model.grader.StandardGrader;
 import pl.edu.agh.to2.model.parser.Parser;
 import pl.edu.agh.to2.model.parser.TxtParser;
 import pl.edu.agh.to2.model.questionbook.QuestionBook;
+import pl.edu.agh.to2.model.questionbook.RandomOrderQuestionBook;
 import pl.edu.agh.to2.model.questionbook.StandardOrderQuestionBook;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.stream.Stream;
 public class Settings {
     public static final List<Class<? extends Grader>> validGraders = Stream.of(StandardGrader.class).collect(Collectors.toList());
     public static final List<Class<? extends Parser>> validParsers = Stream.of(TxtParser.class).collect(Collectors.toList());
-    public static final List<Class<? extends QuestionBook>> validQuestionBooks = Stream.of(StandardOrderQuestionBook.class).collect(Collectors.toList());
+    public static final List<Class<? extends QuestionBook>> validQuestionBooks = Stream.of(StandardOrderQuestionBook.class, RandomOrderQuestionBook.class).collect(Collectors.toList());
 
     private Class<? extends Parser> parserClass;
     private Class<? extends Grader> graderClass;
