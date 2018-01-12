@@ -4,6 +4,7 @@ import pl.edu.agh.to2.model.question.Answer;
 import pl.edu.agh.to2.model.question.Question;
 import pl.edu.agh.to2.model.builder.Settings;
 import pl.edu.agh.to2.model.grader.Statistics;
+import pl.edu.agh.to2.model.question.QuestionRate;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface View {
     Settings askForSettings();
 
     void showStatistics(Statistics statistics);
+
+    QuestionRate askForRate();
 
 }

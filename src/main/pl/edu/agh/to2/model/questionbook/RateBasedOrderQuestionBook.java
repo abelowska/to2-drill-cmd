@@ -1,21 +1,19 @@
 package pl.edu.agh.to2.model.questionbook;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import pl.edu.agh.to2.model.parser.ParseException;
 import pl.edu.agh.to2.model.parser.Parser;
 import pl.edu.agh.to2.model.question.Question;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class StandardOrderQuestionBook implements QuestionBook {
+public class RateBasedOrderQuestionBook implements QuestionBook{
+
     private Parser parser;
     private List<Question> questions;
     private Iterator<Question> it;
 
-    public StandardOrderQuestionBook(Parser parser) {
+    public RateBasedOrderQuestionBook(Parser parser) {
         this.parser = parser;
         questions = new ArrayList<>();
     }
@@ -26,8 +24,9 @@ public class StandardOrderQuestionBook implements QuestionBook {
         try {
             questions = parser.parseQuestions();
             QuestionBook.assignRates(questions);
+            Collections.sort(questions, (o1, o2) ->
+                    -Double.compare(o1.getRate().getAverageRate(), o2.getRate().getAverageRate()));
         } catch (ParseException e) {
-            //TODO What to do with this exception
             e.printStackTrace();
         }
         it = questions.iterator();
@@ -50,6 +49,5 @@ public class StandardOrderQuestionBook implements QuestionBook {
     public List<Question> getQuestions() {
         return Collections.unmodifiableList(questions);
     }
-
 
 }

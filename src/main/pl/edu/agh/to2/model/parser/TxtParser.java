@@ -45,7 +45,7 @@ public class TxtParser implements Parser {
         }
         Question q = qb.constructQuestion();
         if (q.getAnswers().size() == 0) throw new ParseException("No answers");
-        return qb.constructQuestion();
+        return q;
     }
 
     private Answer parseAnswer(String line) throws ParseException {

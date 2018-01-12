@@ -1,5 +1,6 @@
 package pl.edu.agh.to2.presenter;
 
+import com.google.gson.Gson;
 import pl.edu.agh.to2.model.Provider;
 import pl.edu.agh.to2.model.question.Question;
 import pl.edu.agh.to2.view.ConsoleView;
@@ -9,6 +10,10 @@ import pl.edu.agh.to2.model.builder.Settings;
 import pl.edu.agh.to2.model.grader.StandardGrader;
 import pl.edu.agh.to2.model.parser.TxtParser;
 import pl.edu.agh.to2.model.questionbook.StandardOrderQuestionBook;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class Presenter {
     private Provider provider;
@@ -40,13 +45,30 @@ public class Presenter {
         while (!isExit) {
             Question question = provider.getQuestionBook().nextQuestion();
             provider.getStatistics().gradeQuestion(question, view.askQuestion(question));
+            question.updateRate(view.askForRate(
+            ));
 
             if (!provider.getQuestionBook().hasNextQuestion())
                 isExit = true;
         }
 
         this.showStatistics();
+        saveAsJson();
+        provider.getStatistics().saveAsJson();
+
     }
+
+    private void saveAsJson() {
+        Gson gson = new Gson();
+
+        try(FileWriter writer = new FileWriter(Settings.FILENAME)) {
+            gson.toJson(provider.getQuestionBook().getQuestions()
+                    .stream().map(q -> q.getRate()).collect(Collectors.toList()), writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private boolean areSettingsNeeded() {
         return true;

@@ -1,6 +1,7 @@
 package pl.edu.agh.to2.view;
 
 import pl.edu.agh.to2.model.question.Answer;
+import pl.edu.agh.to2.model.question.QuestionRate;
 import pl.edu.agh.to2.presenter.Presenter;
 import pl.edu.agh.to2.model.question.Question;
 import pl.edu.agh.to2.model.builder.Settings;
@@ -114,9 +115,25 @@ public class ConsoleView implements View {
     }
 
     @Override
+    public QuestionRate askForRate() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nRate question\n 1-easy\n 2-medium \n 3-my brain exploded\n ...");
+
+        while (true) {
+            String str = scanner.next();
+
+            if (str.matches("[123]")) {
+                return new QuestionRate(Integer.parseInt(str));
+            }
+        }
+    }
+
+    @Override
     public void showStatistics(Statistics statistics) {
         System.out.println("Score: " + statistics.getOverallScore() * 100 + "%");
     }
+
+
 
 
 }

@@ -9,6 +9,7 @@ public class Question {
     private String title;
     private boolean isMultipleChoice;
     private List<Answer> answers;
+    private AverageQuestionRate rate;
 
     public Question(int id, String title, boolean isMultipleChoice, List<Answer> answers) {
         this.id = id;
@@ -35,6 +36,24 @@ public class Question {
 
     public int getValidAnswerCount() {
         return (int) answers.stream().filter(a -> a.isRight()).count();
+    }
+
+    public AverageQuestionRate getRate() {
+        return rate;
+    }
+
+    public void setRate(AverageQuestionRate rate) {
+        this.rate = rate;
+    }
+
+    public void updateRate(QuestionRate questionRate){
+        if(this.rate != null){
+            this.rate.updateAverageRate(questionRate);
+        }
+        else {
+            this.rate = new AverageQuestionRate(id);
+            this.rate.updateAverageRate(questionRate);
+        }
     }
 
 

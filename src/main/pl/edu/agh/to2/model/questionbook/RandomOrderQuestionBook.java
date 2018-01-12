@@ -43,4 +43,9 @@ public class RandomOrderQuestionBook implements QuestionBook {
 
     @Override
     public boolean hasNextQuestion() { return it.hasNext(); }
+
+    @Override
+    public List<Question> getQuestions() {
+        return Collections.unmodifiableList(questions);
+    }
 }
