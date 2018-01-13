@@ -2,14 +2,12 @@ package pl.edu.agh.to2.presenter;
 
 import com.google.gson.Gson;
 import pl.edu.agh.to2.model.Provider;
-import pl.edu.agh.to2.model.question.Question;
+import pl.edu.agh.to2.model.Question;
 import pl.edu.agh.to2.view.ConsoleView;
 import pl.edu.agh.to2.view.View;
-import pl.edu.agh.to2.model.builder.Builder;
-import pl.edu.agh.to2.model.builder.Settings;
-import pl.edu.agh.to2.model.grader.StandardGrader;
-import pl.edu.agh.to2.model.parser.TxtParser;
-import pl.edu.agh.to2.model.questionbook.StandardOrderQuestionBook;
+import pl.edu.agh.to2.grader.StandardGrader;
+import pl.edu.agh.to2.parser.TxtParser;
+import pl.edu.agh.to2.questionbook.StandardOrderQuestionBook;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,21 +18,19 @@ public class Presenter {
     View view = new ConsoleView(this);
 
     public void startTest() {
-        Settings settings;
+        Provider.Builder builder;
 
         if (areSettingsNeeded()) {
-            settings = view.askForSettings();
+            builder = view.askForSettings();
         } else {
-            settings = new Settings();
-            settings.graderClass(StandardGrader.class)
+            builder = Provider.construct();
+            builder.graderClass(StandardGrader.class)
                     .parserClass(TxtParser.class)
                     .questionBookClass(StandardOrderQuestionBook.class)
                     .filename("filename.txt");
         }
 
-        Builder builder = new Builder(settings);
-        builder.buildComponents();
-        this.provider = builder.getProvider();
+        this.provider = builder.buildProvider();
 
         runTest();
     }
@@ -61,7 +57,7 @@ public class Presenter {
     private void saveAsJson() {
         Gson gson = new Gson();
 
-        try(FileWriter writer = new FileWriter(Settings.FILENAME)) {
+        try(FileWriter writer = new FileWriter(Provider.Builder.FILENAME)) {
             gson.toJson(provider.getQuestionBook().getQuestions()
                     .stream().map(q -> q.getRate()).collect(Collectors.toList()), writer);
         } catch (IOException e) {

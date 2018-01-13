@@ -1,14 +1,14 @@
 package pl.edu.agh.to2.view;
 
-import pl.edu.agh.to2.model.question.Answer;
-import pl.edu.agh.to2.model.question.QuestionRate;
+import pl.edu.agh.to2.model.Provider;
+import pl.edu.agh.to2.model.Answer;
+import pl.edu.agh.to2.model.QuestionRate;
 import pl.edu.agh.to2.presenter.Presenter;
-import pl.edu.agh.to2.model.question.Question;
-import pl.edu.agh.to2.model.builder.Settings;
-import pl.edu.agh.to2.model.grader.Grader;
-import pl.edu.agh.to2.model.grader.Statistics;
-import pl.edu.agh.to2.model.parser.Parser;
-import pl.edu.agh.to2.model.questionbook.QuestionBook;
+import pl.edu.agh.to2.model.Question;
+import pl.edu.agh.to2.grader.Grader;
+import pl.edu.agh.to2.grader.Statistics;
+import pl.edu.agh.to2.parser.Parser;
+import pl.edu.agh.to2.questionbook.QuestionBook;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -55,63 +55,63 @@ public class ConsoleView implements View {
     }
 
     @Override
-    public Settings askForSettings() {
-        Settings settings = new Settings();
+    public Provider.Builder askForSettings() {
+        Provider.Builder builder = Provider.construct();
         Scanner scanner = new Scanner(System.in);
         String className;
 
         String graderTypes = "";
-        for (Class<?> c : Settings.validGraders)
+        for (Class<?> c : Provider.Builder.validGraders)
             graderTypes += c.getSimpleName() + " | ";
         graderTypes = graderTypes.substring(0, graderTypes.length() - 3);
         System.out.println(String.format("Please provide grader class: [%s]", graderTypes));
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                settings.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.model.grader." + className));
+                builder.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.model.grader." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else
-            settings.graderClass(Settings.validGraders.get(0));
+            builder.graderClass(Provider.Builder.validGraders.get(0));
 
         String parserTypes = "";
-        for (Class<?> c : Settings.validParsers)
+        for (Class<?> c : Provider.Builder.validParsers)
             parserTypes += c.getSimpleName() + " | ";
         parserTypes = parserTypes.substring(0, parserTypes.length() - 3);
         System.out.println(String.format("Please provide parser class: [%s]", parserTypes));
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                settings.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.model.parser." + className));
+                builder.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.model.parser." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else
-            settings.parserClass(Settings.validParsers.get(0));
+            builder.parserClass(Provider.Builder.validParsers.get(0));
 
         String questionBookTypes = "";
-        for (Class<?> c : Settings.validQuestionBooks)
+        for (Class<?> c : Provider.Builder.validQuestionBooks)
             questionBookTypes += c.getSimpleName() + " | ";
         questionBookTypes = questionBookTypes.substring(0, questionBookTypes.length() - 3);
         System.out.println(String.format("Please provide question book class: [%s]", questionBookTypes));
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                settings.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.model.questionbook." + className));
+                builder.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.model.questionbook." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         } else
-            settings.questionBookClass(Settings.validQuestionBooks.get(0));
+            builder.questionBookClass(Provider.Builder.validQuestionBooks.get(0));
 
         System.out.println("You need to provide path to file with questions");
 
         String path = scanner.next();
 
-        settings.filename(Paths.get(path).toAbsolutePath().toString());
+        builder.filename(Paths.get(path).toAbsolutePath().toString());
 
-        return settings;
+        return builder;
     }
 
     @Override
