@@ -7,6 +7,7 @@ import pl.edu.agh.to2.grader.Statistics;
 import pl.edu.agh.to2.model.Answer;
 import pl.edu.agh.to2.model.Question;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class TestStatistics {
         statistics.gradeQuestion(question2, userAnswers1);
 
 
-        Assert.assertEquals(0.8, statistics.getOverallScore(), 0.01 );
+        Assert.assertEquals(new BigDecimal("0.8"), statistics.getOverallScore());
 
     }
 }

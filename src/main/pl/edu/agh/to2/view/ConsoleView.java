@@ -10,6 +10,7 @@ import pl.edu.agh.to2.grader.Statistics;
 import pl.edu.agh.to2.parser.Parser;
 import pl.edu.agh.to2.questionbook.QuestionBook;
 
+import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +131,7 @@ public class ConsoleView implements View {
 
     @Override
     public void showStatistics(Statistics statistics) {
-        System.out.println("Score: " + statistics.getOverallScore() * 100 + "%");
+        System.out.println("Score: " + statistics.getOverallScore().multiply(new BigDecimal(100)) + "%");
     }
 
 

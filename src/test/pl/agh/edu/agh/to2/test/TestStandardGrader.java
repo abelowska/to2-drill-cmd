@@ -7,6 +7,7 @@ import pl.edu.agh.to2.grader.StandardGrader;
 import pl.edu.agh.to2.model.Answer;
 import pl.edu.agh.to2.model.Question;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class TestStandardGrader {
 
         Score score = grader.getScore(question, userAnswers);
 
-        Assert.assertEquals(0.0, score.getPercentage(), 0.01);
+        Assert.assertEquals(BigDecimal.ZERO, score.getPercentage());
 
     }
 
@@ -69,7 +70,7 @@ public class TestStandardGrader {
 
         Score score = grader.getScore(question, userAnswers);
 
-        Assert.assertEquals(0.4, score.getPercentage(), 0.01);
+        Assert.assertEquals(new BigDecimal("0.4"), score.getPercentage());
 
     }
 

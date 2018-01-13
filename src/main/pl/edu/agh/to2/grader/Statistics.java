@@ -6,29 +6,30 @@ import pl.edu.agh.to2.model.Answer;
 import pl.edu.agh.to2.model.Question;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Statistics {
     private List<Score> scoreList;
-    private float overallScore;
+    private BigDecimal overallScore;
     private Grader grader;
 
 
     public Statistics(Grader grader) {
         scoreList = new ArrayList<>();
-        overallScore = 0;
+        overallScore = BigDecimal.ZERO;
         this.grader = grader;
     }
 
     public void gradeQuestion(Question question, List<Answer> userAnswers) {
         Score score = grader.getScore(question, userAnswers);
 
-        overallScore += (score.getPercentage() - overallScore) / (scoreList.size() + 1);
+        overallScore = (score.getPercentage().subtract(overallScore).divide(new BigDecimal(scoreList.size() + 1))).add(overallScore);
         scoreList.add(score);
     }
 
-    public float getOverallScore() {
+    public BigDecimal getOverallScore() {
         return overallScore;
     }
 

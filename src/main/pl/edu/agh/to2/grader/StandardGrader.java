@@ -3,6 +3,7 @@ package pl.edu.agh.to2.grader;
 import pl.edu.agh.to2.model.Answer;
 import pl.edu.agh.to2.model.Question;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class StandardGrader implements Grader {
@@ -20,6 +21,6 @@ public class StandardGrader implements Grader {
             }
         }
 
-        return new Score(question, userAnswers, ((float) validAnswerCount) / (float) question.getValidAnswerCount());
+        return new Score(question, userAnswers, (new BigDecimal(validAnswerCount)).divide(new BigDecimal(question.getValidAnswerCount())));
     }
 }
