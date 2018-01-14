@@ -1,5 +1,6 @@
-package pl.edu.agh.to2.model;
+package pl.edu.agh.to2.provider;
 
+import pl.edu.agh.to2.grader.EasyGrader;
 import pl.edu.agh.to2.grader.Grader;
 import pl.edu.agh.to2.grader.StandardGrader;
 import pl.edu.agh.to2.grader.Statistics;
@@ -51,7 +52,7 @@ public class Provider {
     public static class Builder{
         public static final String FILENAME = "staff.json";
 
-        public static final List<Class<? extends Grader>> validGraders = Stream.of(StandardGrader.class).collect(Collectors.toList());
+        public static final List<Class<? extends Grader>> validGraders = Stream.of(StandardGrader.class, EasyGrader.class).collect(Collectors.toList());
         public static final List<Class<? extends Parser>> validParsers = Stream.of(TxtParser.class).collect(Collectors.toList());
         public static final List<Class<? extends QuestionBook>> validQuestionBooks = Stream.of(StandardOrderQuestionBook.class, RandomOrderQuestionBook.class, RateBasedOrderQuestionBook.class).collect(Collectors.toList());
 

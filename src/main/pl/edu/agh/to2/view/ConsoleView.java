@@ -1,6 +1,6 @@
 package pl.edu.agh.to2.view;
 
-import pl.edu.agh.to2.model.Provider;
+import pl.edu.agh.to2.provider.Provider;
 import pl.edu.agh.to2.model.Answer;
 import pl.edu.agh.to2.model.QuestionRate;
 import pl.edu.agh.to2.presenter.Presenter;
@@ -69,7 +69,7 @@ public class ConsoleView implements View {
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                builder.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.model.grader." + className));
+                builder.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.grader." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -84,7 +84,7 @@ public class ConsoleView implements View {
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                builder.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.model.parser." + className));
+                builder.parserClass((Class<? extends Parser>) Class.forName("pl.edu.agh.to2.parser." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -99,7 +99,7 @@ public class ConsoleView implements View {
         className = scanner.nextLine();
         if (!className.isEmpty()) {
             try {
-                builder.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.model.questionbook." + className));
+                builder.questionBookClass((Class<? extends QuestionBook>) Class.forName("pl.edu.agh.to2.questionbook." + className));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

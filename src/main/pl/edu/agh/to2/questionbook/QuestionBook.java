@@ -2,7 +2,7 @@ package pl.edu.agh.to2.questionbook;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import pl.edu.agh.to2.model.Provider;
+import pl.edu.agh.to2.provider.Provider;
 import pl.edu.agh.to2.model.AverageQuestionRate;
 import pl.edu.agh.to2.model.Question;
 
