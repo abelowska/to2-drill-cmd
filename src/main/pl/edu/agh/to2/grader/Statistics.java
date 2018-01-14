@@ -13,18 +13,14 @@ import java.util.List;
 public class Statistics {
     private List<Score> scoreList;
     private BigDecimal overallScore;
-    private Grader grader;
 
 
-    public Statistics(Grader grader) {
+    public Statistics() {
         scoreList = new ArrayList<>();
         overallScore = BigDecimal.ZERO;
-        this.grader = grader;
     }
 
-    public void gradeQuestion(Question question, List<Answer> userAnswers) {
-        Score score = grader.getScore(question, userAnswers);
-
+    public void updateStatistics(Score score) {
         overallScore = (score.getPercentage().subtract(overallScore).divide(new BigDecimal(scoreList.size() + 1))).add(overallScore);
         scoreList.add(score);
     }

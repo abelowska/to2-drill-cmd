@@ -21,7 +21,7 @@ public class TestStatistics {
 
         StandardGrader grader = new StandardGrader();
 
-       Statistics statistics = new Statistics(grader);
+       Statistics statistics = new Statistics();
 
         List<Answer> userAnswers1 = new ArrayList<>();
 
@@ -45,8 +45,8 @@ public class TestStatistics {
         userAnswers1.add(a3);
 
 
-        statistics.gradeQuestion(question1, userAnswers1);
-        statistics.gradeQuestion(question2, userAnswers1);
+        statistics.updateStatistics(grader.getScore(question1, userAnswers1));
+        statistics.updateStatistics(grader.getScore(question2, userAnswers1));
 
 
         Assert.assertEquals(new BigDecimal("0.8"), statistics.getOverallScore());

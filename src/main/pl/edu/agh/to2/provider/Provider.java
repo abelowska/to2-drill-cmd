@@ -108,7 +108,7 @@ public class Provider {
                 grader = this.getGraderClass().newInstance();
                 parser = this.getParserClass().getDeclaredConstructor(String.class).newInstance(this.getFilename());
                 questionBook = this.getQuestionBookClass().getDeclaredConstructor(Parser.class).newInstance(parser);
-                statistics = new Statistics(grader);
+                statistics = new Statistics();
                 provider = new Provider(parser, grader, questionBook, statistics);
                 provider.getQuestionBook().initQuestions();
 

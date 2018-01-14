@@ -1,6 +1,7 @@
 package pl.edu.agh.to2.presenter;
 
 import com.google.gson.Gson;
+import pl.edu.agh.to2.grader.Score;
 import pl.edu.agh.to2.provider.Provider;
 import pl.edu.agh.to2.model.Question;
 import pl.edu.agh.to2.view.ConsoleView;
@@ -40,7 +41,9 @@ public class Presenter {
 
         while (!isExit) {
             Question question = provider.getQuestionBook().nextQuestion();
-            provider.getStatistics().gradeQuestion(question, view.askQuestion(question));
+            Score score = provider.getGrader().getScore(question, view.askQuestion(question));
+            view.showQuestionScore(score);
+            provider.getStatistics().updateStatistics(score);
             question.updateRate(view.askForRate(
             ));
 
