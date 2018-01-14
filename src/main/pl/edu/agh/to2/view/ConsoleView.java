@@ -15,10 +15,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleView implements View {
 
@@ -39,14 +36,14 @@ public class ConsoleView implements View {
             answerCounter++;
         }
 
-        List<Integer> userAnswerIndexes = new ArrayList<>();
-        System.out.print("\n" + "Pick answers numbers(end with q): ");
+        Set<Integer> userAnswerIndexes = new HashSet<>();
+        System.out.print("\n" + "Pick answers numbers(end with '.'): ");
 
         boolean parse = true;
         while (parse) {
             String str = scanner.next();
 
-            if (str.contains("q"))
+            if (str.contains("."))
                 parse = false;
             else {
                 userAnswerIndexes.add(Integer.valueOf(str) - 1);
