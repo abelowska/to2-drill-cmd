@@ -50,7 +50,9 @@ public class Provider {
     }
 
     public static class Builder{
-        public static final String FILENAME = "staff.json";
+        public static final String RATES_FILE = "rates.json";
+        public static final String STATS_FILE = "stats.json";
+
 
         public static final List<Class<? extends Grader>> validGraders = Stream.of(StandardGrader.class, EasyGrader.class).collect(Collectors.toList());
         public static final List<Class<? extends Parser>> validParsers = Stream.of(TxtParser.class).collect(Collectors.toList());

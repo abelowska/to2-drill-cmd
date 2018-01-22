@@ -29,25 +29,7 @@ public class Statistics {
         return overallScore;
     }
 
-    public void saveAsJson() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        File f = new File("stats.json");
-        PrintWriter out = null;
-        try {
-            if (f.exists() && !f.isDirectory()) {
-                out = new PrintWriter(new FileOutputStream(f, true));
-            } else {
-                out = new PrintWriter("stats.json");
-            }
-            out.append(gson.toJson(this));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if(out != null) {
-                out.close();
-            }
-        }
-    }
+
 }
