@@ -62,9 +62,9 @@ public class ConsoleView implements View {
     public void showQuestionScore(Score score) {
         System.out.println("Question Score: " + score.getPercentage().multiply(new BigDecimal(100)) + "%");
         System.out.println("Correct Answers:\n");
-        int anserwCount = 1;
+        int answerCount = 1;
         for (Answer answer : score.getQuestion().getAnswers())
-            System.out.println((answer.isRight() ? ">>> " : "") + anserwCount++ + ") " + answer.getContent());
+            System.out.println((answer.isRight() ? ">>> " : "") + answerCount++ + ") " + answer.getContent());
     }
 
     @Override
