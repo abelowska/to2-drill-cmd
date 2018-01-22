@@ -20,15 +20,17 @@ import java.util.*;
 public class ConsoleView implements View {
 
     private Presenter presenter;
+    private int questionCounter;
 
     public ConsoleView(Presenter presenter) {
         this.presenter = presenter;
+        this.questionCounter = 1;
     }
 
     @Override
     public List<Answer> askQuestion(Question question) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(question.getTitle());
+        System.out.println(questionCounter++ + ". " + question.getTitle());
 
         int answerCounter = 1;
         for (Answer answer : question.getAnswers()) {
@@ -62,7 +64,7 @@ public class ConsoleView implements View {
         System.out.println("Correct Answers:\n");
         int anserwCount = 1;
         for (Answer answer : score.getQuestion().getAnswers())
-            System.out.println((answer.isRight() ? ">>> " : "") +  anserwCount++ + ") " + answer.getContent());
+            System.out.println((answer.isRight() ? ">>> " : "") + anserwCount++ + ") " + answer.getContent());
     }
 
     @Override
@@ -82,7 +84,7 @@ public class ConsoleView implements View {
             className = scanner.nextLine();
             if (!className.isEmpty()) {
                 try {
-                    if (Arrays.asList(graderTypes.split(" | ")).contains(className)){
+                    if (Arrays.asList(graderTypes.split(" | ")).contains(className)) {
                         builder.graderClass((Class<? extends Grader>) Class.forName("pl.edu.agh.to2.grader." + className));
                         parsing = false;
                     } else {
@@ -149,19 +151,15 @@ public class ConsoleView implements View {
         System.out.println("You need to provide path to file with questions");
 
         parsing = true;
-        while(parsing)
-        {
+        while (parsing) {
             String pathName = scanner.next();
             Path path = Paths.get(pathName);
             //.toAbsolutePath().toString();
             File file = path.toFile();
-            if(file.exists() && !file.isDirectory())
-            {
+            if (file.exists() && !file.isDirectory()) {
                 builder.filename(path.toAbsolutePath().toString());
                 parsing = false;
-            }
-            else
-            {
+            } else {
                 System.out.println("File doesn't exist, please try again");
             }
         }
@@ -185,8 +183,10 @@ public class ConsoleView implements View {
 
     @Override
     public void showStatistics(Statistics statistics) {
-        System.out.println("Score: " + statistics.getOverallScore().multiply(new BigDecimal(100)) + "%");
+        System.out.println("Score: " + statistics.getOverallScore().multiply(BigDecimal.valueOf(100)) + "%");
+        int questionCounter = 1;
+        for (Score score : statistics.getScoreList()) {
+            System.out.println("Question " + questionCounter++ + ": " + score.getPercentage().multiply(BigDecimal.valueOf(100)) + "%");
+        }
     }
-
-
 }

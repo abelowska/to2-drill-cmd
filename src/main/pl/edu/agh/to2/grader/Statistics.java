@@ -14,10 +14,13 @@ public class Statistics {
     private List<Score> scoreList;
     private BigDecimal overallScore;
 
-
     public Statistics() {
         scoreList = new ArrayList<>();
         overallScore = BigDecimal.ZERO;
+    }
+
+    public List<Score> getScoreList() {
+        return scoreList;
     }
 
     public void updateStatistics(Score score) {
@@ -28,8 +31,5 @@ public class Statistics {
     public BigDecimal getOverallScore() {
         return overallScore;
     }
-
-
-
 
 }
