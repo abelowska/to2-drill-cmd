@@ -13,10 +13,10 @@ import java.util.Collections;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class TestQuestionBook {
+public class TestStandardQuestionBook {
 
     @Test
-    public void testQuestionBook() throws ParseException {
+    public void testStandardQuestionBook() throws ParseException {
         Question q1 = new Question(1, "?", true, Collections.emptyList());
         Question q2 = new Question(2, "?", true, Collections.emptyList());
 

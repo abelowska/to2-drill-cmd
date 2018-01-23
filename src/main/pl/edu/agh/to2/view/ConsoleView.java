@@ -29,7 +29,7 @@ public class ConsoleView implements View {
 
     @Override
     public List<Answer> askQuestion(Question question) {
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println( question.getTitle());
 
         int answerCounter = 1;
@@ -39,16 +39,29 @@ public class ConsoleView implements View {
         }
 
         Set<Integer> userAnswerIndexes = new HashSet<>();
-        System.out.print("\n" + "Pick answers numbers(end with '.'): ");
+        boolean badAnswer = true;
 
-        boolean parse = true;
-        while (parse) {
-            String str = scanner.next();
+        while(badAnswer) {
+            Scanner scanner = new Scanner(System.in);
+            userAnswerIndexes.clear();
+            System.out.print("\n" + "Pick answers numbers(end with ' .'): \n");
 
-            if (str.contains("."))
-                parse = false;
-            else {
-                userAnswerIndexes.add(Integer.valueOf(str) - 1);
+            boolean parse = true;
+            while (parse) {
+                String str = scanner.next();
+
+                if (str.contains(".")) {
+                    parse = false;
+                } else {
+                    if (str.matches("\\d+") && Integer.valueOf(str) <= question.getAnswers().size() && Integer.valueOf(str) > 0) {
+                        userAnswerIndexes.add(Integer.valueOf(str) - 1);
+                        badAnswer = false;
+                    } else {
+                        System.out.println("number not correct, please try again\n");
+                        badAnswer = true;
+                        break;
+                    }
+                }
             }
         }
 

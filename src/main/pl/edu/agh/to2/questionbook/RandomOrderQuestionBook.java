@@ -23,6 +23,7 @@ public class RandomOrderQuestionBook implements QuestionBook {
     public void initQuestions() {
         try {
             questions = parser.parseQuestions();
+            RatesAssigner.assignRates(questions);
             Collections.shuffle(questions);
         } catch (ParseException e) {
             e.printStackTrace();

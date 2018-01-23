@@ -23,7 +23,7 @@ public class RateBasedOrderQuestionBook implements QuestionBook{
 
         try {
             questions = parser.parseQuestions();
-            QuestionBook.assignRates(questions);
+            RatesAssigner.assignRates(questions);
             Collections.sort(questions, this::compareByRates);
         } catch (ParseException e) {
             e.printStackTrace();

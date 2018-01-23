@@ -24,7 +24,7 @@ public class StandardOrderQuestionBook implements QuestionBook {
 
         try {
             questions = parser.parseQuestions();
-            QuestionBook.assignRates(questions);
+            RatesAssigner.assignRates(questions);
         } catch (ParseException e) {
             //TODO What to do with this exception
             e.printStackTrace();

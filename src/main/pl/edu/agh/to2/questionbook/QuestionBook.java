@@ -21,15 +21,6 @@ import static pl.edu.agh.to2.provider.Provider.Builder.RATES_FILE;
 
 public interface QuestionBook {
 
-     static void assignRates(List<Question> questions) {
-        List<AverageQuestionRate> rates = SerializerFactory.createJsonSerializer().readRates(RATES_FILE);
-
-        for (Question q : questions) {
-            rates.stream().filter(rate -> q.getId() == rate.getQuestionId()).findFirst().ifPresent(r -> q.setRate(r));
-        }
-
-     }
-
     void initQuestions();
 
     Question nextQuestion();
