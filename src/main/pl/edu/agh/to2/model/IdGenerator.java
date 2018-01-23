@@ -13,10 +13,12 @@ public class IdGenerator {
     private int count;
 
     private IdGenerator() {
-        count = 0;
+        count = 1;
     }
 
     public int generateId() {
         return count++;
     }
+
+    public void reset(){count = 1;}
 }

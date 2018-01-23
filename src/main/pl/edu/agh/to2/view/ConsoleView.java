@@ -16,21 +16,21 @@ import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ConsoleView implements View {
 
     private Presenter presenter;
-    private int questionCounter;
+    //private int questionCounter;
 
     public ConsoleView(Presenter presenter) {
         this.presenter = presenter;
-        this.questionCounter = 1;
     }
 
     @Override
     public List<Answer> askQuestion(Question question) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(questionCounter++ + ". " + question.getTitle());
+        System.out.println( question.getTitle());
 
         int answerCounter = 1;
         for (Answer answer : question.getAnswers()) {
@@ -67,9 +67,32 @@ public class ConsoleView implements View {
             System.out.println((answer.isRight() ? ">>> " : "") + answerCount++ + ") " + answer.getContent());
     }
 
+
     @Override
-    public Provider.Builder askForSettings() {
-        Provider.Builder builder = Provider.construct();
+    public void askForFilePath(Provider.Builder builder) {
+        System.out.println("You need to provide path to file with questions");
+
+        boolean parsing;
+        parsing = true;
+        Scanner scanner = new Scanner(System.in);
+
+        while (parsing) {
+            String pathName = scanner.next();
+            Path path = Paths.get(pathName);
+
+            File file = path.toFile();
+            if (file.exists() && !file.isDirectory()) {
+                builder.filename(path.toAbsolutePath().toString());
+                parsing = false;
+            } else {
+                System.out.println("File doesn't exist, please try again");
+            }
+        }
+    }
+
+    @Override
+    public void askForSettings(Provider.Builder builder) {
+
         Scanner scanner = new Scanner(System.in);
         String className;
         boolean parsing;
@@ -148,23 +171,6 @@ public class ConsoleView implements View {
                 parsing = false;
             }
         }
-        System.out.println("You need to provide path to file with questions");
-
-        parsing = true;
-        while (parsing) {
-            String pathName = scanner.next();
-            Path path = Paths.get(pathName);
-            //.toAbsolutePath().toString();
-            File file = path.toFile();
-            if (file.exists() && !file.isDirectory()) {
-                builder.filename(path.toAbsolutePath().toString());
-                parsing = false;
-            } else {
-                System.out.println("File doesn't exist, please try again");
-            }
-        }
-
-        return builder;
     }
 
     @Override
@@ -183,10 +189,50 @@ public class ConsoleView implements View {
 
     @Override
     public void showStatistics(Statistics statistics) {
-        System.out.println("Score: " + statistics.getOverallScore().multiply(BigDecimal.valueOf(100)) + "%");
-        int questionCounter = 1;
-        for (Score score : statistics.getScoreList()) {
-            System.out.println("Question " + questionCounter++ + ": " + score.getPercentage().multiply(BigDecimal.valueOf(100)) + "%");
+        System.out.println("\n -------------------- \n Overall score: \n" + statistics.getOverallScore().multiply(BigDecimal.valueOf(100)) + "%");
+
+        List <Score> scoreList= statistics.getScoreList();
+        Collections.sort(scoreList, this::compareById);
+        for (Score score : scoreList) {
+            System.out.println("Question " +score.getQuestion().getId() + ": " + score.getPercentage().multiply(BigDecimal.valueOf(100)) + "%");
         }
+        System.out.println("\n -------------------- \n");
+    }
+
+    private int compareById(Score s1, Score s2) {
+        Integer id1 = s1.getQuestion().getId();
+        Integer id2 = s2.getQuestion().getId();
+
+        return Integer.compare(id1, id2);
+
+    }
+
+    @Override
+    public void showAllStatistics(List<Statistics> statistics) {
+        System.out.println("\n -----ALL YOUR STATISTICS----- \n");
+        int count = 0;
+
+        for (Statistics stats : statistics) {
+            System.out.println(String.format("\n -------TEST %d--------\n", ++count));
+            showStatistics(stats);
+        }
+
+    }
+
+    @Override
+    public Boolean askForConfirmation(String message) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n" + message + " [Y/N]");
+
+        while (true) {
+            String str = scanner.next();
+
+            if (str.toUpperCase().equals("N")) {
+                return false;
+            } else if (str.toUpperCase().equals("Y")) {
+                return true;
+            }
+        }
+
     }
 }

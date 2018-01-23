@@ -61,6 +61,7 @@ public class JsonSerializer implements Serializer {
         return rates;
     }
 
+    @Override
     public List<Statistics> readStatistics (String pathToFile){
         Gson gson = new Gson();
         List<Statistics> stats = new ArrayList<>();

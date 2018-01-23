@@ -15,9 +15,15 @@ public interface View {
 
     void showQuestionScore(Score score);
 
-    Provider.Builder askForSettings();
+    void askForSettings(Provider.Builder builder);
+
+    void askForFilePath (Provider.Builder builder);
 
     void showStatistics(Statistics statistics);
+
+    void showAllStatistics(List <Statistics> statistics);
+
+    Boolean askForConfirmation(String message);
 
     QuestionRate askForRate();
 

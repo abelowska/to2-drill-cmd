@@ -1,5 +1,6 @@
 package pl.edu.agh.to2.questionbook;
 
+import pl.edu.agh.to2.model.AverageQuestionRate;
 import pl.edu.agh.to2.model.Question;
 import pl.edu.agh.to2.parser.ParseException;
 import pl.edu.agh.to2.parser.Parser;
@@ -23,12 +24,19 @@ public class RateBasedOrderQuestionBook implements QuestionBook{
         try {
             questions = parser.parseQuestions();
             QuestionBook.assignRates(questions);
-            Collections.sort(questions, (o1, o2) ->
-                    -Double.compare(o1.getRate().getAverageRate(), o2.getRate().getAverageRate()));
+            Collections.sort(questions, this::compareByRates);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         it = questions.iterator();
+    }
+
+    private int compareByRates(Question q1, Question q2) {
+        AverageQuestionRate rate1 = q1.getRate();
+        AverageQuestionRate rate2 = q2.getRate();
+
+        return -Double.compare(rate1 != null ? rate1.getAverageRate() : 0.0, rate2 != null ? rate2.getAverageRate() : 0.0);
+
     }
 
     @Override

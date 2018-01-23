@@ -20,7 +20,7 @@ public class Statistics {
     }
 
     public List<Score> getScoreList() {
-        return scoreList;
+        return new ArrayList<>(scoreList);
     }
 
     public void updateStatistics(Score score) {

@@ -22,7 +22,7 @@ public class TestQuestionBuilder {
         Assert.assertTrue(q.isMultipleChoice());
         Assert.assertEquals("Title", q.getTitle());
         Assert.assertEquals(1, q.getAnswers().size());
-        Assert.assertEquals(0, q.getId());
+        Assert.assertEquals(1, q.getId());
         Assert.assertTrue(q.getAnswers().stream().anyMatch(a -> "Answer".equals(a.getContent())));
         Assert.assertEquals(1, q.getValidAnswerCount());
     }

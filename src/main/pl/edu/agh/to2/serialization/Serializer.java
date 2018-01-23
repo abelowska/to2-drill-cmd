@@ -10,4 +10,5 @@ public interface Serializer {
     void saveStatistics(Statistics stats, String pathToFile);
     void saveRatings(List<AverageQuestionRate> rates, String pathToFile);
     List<AverageQuestionRate> readRates(String pathToFile);
+    List <Statistics> readStatistics (String pathToFile);
 }
